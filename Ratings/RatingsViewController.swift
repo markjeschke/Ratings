@@ -115,7 +115,6 @@ class RatingsViewController: UITableViewController {
     }
     
     func parseResultsData() {
-        
         for count in 0 ..< jsonResults.count {
             resultsDict = jsonResults[count] as NSDictionary
             trackName = resultsDict["trackName"] as? String
@@ -135,7 +134,6 @@ class RatingsViewController: UITableViewController {
  
         averageUserRatingForCurrentVersionStars = starRating.populateStars(averageUserRatingForCurrentVersion!)
         averageUserRatingStars = starRating.populateStars(averageUserRating!)
-        
         userRatingCountMessage = userRatingCount.showUserCountMessage(userRatingCountForCurrentVersion!)
         
         // Append the app's trackId to the appStoreReviewLink URL
@@ -147,7 +145,7 @@ class RatingsViewController: UITableViewController {
         affiliateTokenDetection()
         campaignTokenDetection()
         
-        showContent()
+        showNavContent()
         
     }
     
@@ -183,7 +181,7 @@ class RatingsViewController: UITableViewController {
     
     // MARK: === Show App Icon and Purchase Button ===
     
-    func showContent() {
+    func showNavContent() {
         
         // Create the left-side navigation button
         var iconBtn: UIButton = UIButton()
@@ -360,6 +358,8 @@ class RatingsViewController: UITableViewController {
         tableView.reloadData()
     }
     
+    // MARK: === Go to App Store via Product Link ===
+    
     func goToAppStore() {
         UIApplication.sharedApplication() .openURL(NSURL (string: appStoreProductLink!)!)
     }
@@ -422,8 +422,9 @@ class RatingsViewController: UITableViewController {
         stopActivityAnimation()
         print("NetworkTimer has stopped")
     }
-
 }
+
+// MARK: === Star Rating Struct ===
 
 struct StarRating {
     func populateStars(ratingCount:Double) -> String {
@@ -451,6 +452,8 @@ struct StarRating {
         }
     }
 }
+
+// MARK: === User Rating Count for Current Version Struct ===
 
 struct UserRatingCount {
     func showUserCountMessage(userCount:Int) -> String {
