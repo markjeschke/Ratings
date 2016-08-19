@@ -6,15 +6,15 @@ This Swift Xcode project demonstrates how to show your app ratings with Font Awe
 
 ### Features & Specifications:
 
-* The API call to the [iTunes Search API](https://affiliate.itunes.apple.com/resources/documentation/itunes-store-web-service-search-api/#lookup) was requested with NSURLSession, and the JSON was parsed using NSJSONSerialization.
+* Utilizes a singleton shared instance that manages the iTunes API request and returns the JSON results into a TableView.
 * Displays how many users have rated and reviewed the current version of the app, using icons from **[Font Awesome](http://fontawesome.io/)**.
-* Provides options to add your Apple affiliate token, a campaign token, and a provider token for iTunes Connect tracking and obtaining 7% commission for app purchase that is made from your affiliate App Store link (within a 24-hour period).
-* Contains a low-level network connection detector. If the JSON results count == 0, then the app will alert the user, and attempt to access the iTunes Search API to activate an auto-refresh and display the content when a connecion is established. The timer expires after nothing is found within 60 seconds.
+* Provides options to add your Apple affiliate token, a campaign token, and a provider token for iTunes Connect tracking.
+* Contains a low-level network connection detector. 
 * Optimized for all devices, orientation, split screen and slide-over multitasking (iOS 9+ iPad Air 2 and iPad Pro only).
 * Minimum requirements: iOS 8
 * Authored with Xcode 7.3.1 and Swift 2.
 
-This example uses the `trackId` (589674071) for my app, [DrumKick](https://itunes.apple.com/us/app/drumkick/id589674071?pt=259432&mt=8&uo=4&at=10l3KX&ct=github-ratings-drumkick), to show this API call in action. In iTunes Connect, the track ID is the same as the Apple ID.
+This example uses the `trackId` (589674071) for my app, [DrumKick](https://itunes.apple.com/us/app/drumkick/id589674071?pt=259432&mt=8&uo=4&at=10l3KX&ct=github-ratings-drumkick), to show this API call in action. 
 
 ## Installation into Your Own Xcode Project
 
@@ -26,17 +26,16 @@ You can simply drag and drop this ApiManager.swift file into your own project.
 
 For the ApiManager to work from the ViewController of your choice, you must include the following:
 
-1. Add a trackId variable and include your app's trackId number, such as: "589674071". This is *mandatory* so that the iTunes Search API can look up and return the desired JSON results. `var trackId:String = "589674071"`
+1. Add a `trackId` string variable and include your app's track ID number, such as: "589674071". This is *mandatory* so that the iTunes Search API can look up and return the desired JSON results. `var trackId:String = "589674071"`
 2. `NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(dataReceived), name: "refreshContent", object: nil)` within the viewDidLoad method.
 2. `requestData(trackId:String)` method to initiate the JSON request, such as: `ApiManager.sharedInstance.getApiRequest(trackId)` 
 2. `requestData(trackId)` from within the `viewDidLoad` method.
 3. `dataReceived()` method which gets triggered via the `refreshContent` NSNotification.
 4. `parseResultsData()` method which inserts the JSON results into their appropriate variable strings, i.e., `trackName`, `averageUserRatingForCurrentVersion`, etc.
-### Track ID – required
 
-### How to Find Your App's `trackId` Number
+### How to Find Your App's Track ID Number
 
-Here are a few ways:
+In iTunes Connect, the track ID is the same as the Apple ID. Here are a few ways to find it:
 
 1. Log into your iTunes Connect develope account at [https://itunesconnect.apple.com](https://itunesconnect.apple.com). Click on your app within "My Apps," and find the Apple ID number within "App Information."
 2. Do a web search for your app's name, such as "drumkick itunes." Within the page results, click on the iTunes link that showcases your app, then copy the number that follows `id` in the iTunes URL, such as [https://itunes.apple.com/us/app/drumkick/id589674071?mt=8](https://itunes.apple.com/us/app/drumkick/id589674071?mt=8). From the URL, I'm grabbing **589674071** after the **id**.
@@ -88,45 +87,13 @@ accessoryViewIcon.text = "\u{f08e}"
 cell.accessoryView = accessoryViewIcon
 ````
 
-The unicode for the accessoryViewIcon is: fa-external-link [&#xf08e;], so all you need to grab is the `f08e` portion of the unicode. The string will end up looking like this: `"\u{f08e}"`
+The unicode for the accessoryViewIcon is: fa-external-link [&amp;&#35;xf08e;], so all you need to grab is the `f08e` portion of the unicode. The string will end up looking like this: `"\u{f08e}"`
 
 The unicode numbers for each icon can be found here: [http://fontawesome.io/cheatsheet](http://fontawesome.io/cheatsheet/)
 
 If you use the Font Awesome icon font in your app, be sure to include Font Awesome attribution and license information, which can be found [here](http://fontawesome.io/license/).
 
-## Optional Extras
-
-### Product Token – optional
-This token is provided within iTunes Connect, under App Analytics. It allows Apple to provide tapped area statistics within your app in the iTunes Connect App Analytics dashboard. That way, you can avoid using a third-party analytic SDK, such as Google Analytics, or Flurry. Requires apps targeted for iOS 8 and above.
-
-````swift
-// Enter your app's provider token
-var providerToken:String? = "259432"
-// This will append '&pt=259432' to your App Store product and review links. 
-// If the optional string is nil, then nothing will be appended.
-````
-
-### Affiliate Token – optional
-Enter your Apple affiliate token, so that you can earn 7% commission of each sale that is made via your link to the App Store. If you haven't joined the free affiliate program, I suggest you do that [now](http://www.apple.com/itunes/affiliates/)! Otherwise, that's potential, passive income that you're leaving on the table.
-
-````swift
-// Enter your Apple affiliate token:
-var affiliateToken:String? = "10l3KX"
-// This will append 'at=10l3KX' to your App Store product and review links. 
-// If the optional string is nil, then nothing will be appended.
-````
-
-### Campaign Token – optional
-The campaign token will provide information about where the App Store link was actually tapped/clicked. You can be as granular as you'd like. 
-
-````swift
-// Enter your campaign token:
-var campaignToken:String? = "ratings-drumkick"
-// This will append '&ct=ratings-drumkick' to your App Store product and review links.
-// If the optional string is nil, then nothing will be appended.
-````
-
-Most people who have an Apple affiliate tokens don't seem to include campaign tokens, or know about them. But, it will help you identify where your App Store affiliate links are being triggered, and which apps are generating interest. In my example of 'ratings-drumkick', I'm listing [the app that contains the affiliate link]-[the name of the app that the App Store link is taking the user to].
+## App Product & Review Links
 
 ### Product Link to your app's purchase page
 
@@ -149,6 +116,40 @@ This review link will *not* go anywhere on the App Store until your app's ID is 
 ````swift
 self.appStoreReviewLink! += "&id=\(self.trackId!)"
 ````
+
+## Optional Features:
+
+### Product Token
+This token is provided within iTunes Connect, under App Analytics. It allows Apple to provide tapped area statistics within your app in the iTunes Connect App Analytics dashboard. That way, you can avoid using a third-party analytic SDK, such as Google Analytics, or Flurry. Requires apps targeted for iOS 8 and above.
+
+````swift
+// Enter your app's provider token
+var providerToken:String? = "259432"
+// This will append '&pt=259432' to your App Store product and review links. 
+// If the optional string is nil, then nothing will be appended.
+````
+
+### Affiliate Token
+Enter your Apple affiliate token, so that you can earn 7% commission of each sale that is made via your link to the App Store. If you haven't joined the free affiliate program, I suggest you do that [now](http://www.apple.com/itunes/affiliates/)! Otherwise, that's potential, passive income that you're leaving on the table.
+
+````swift
+// Enter your Apple affiliate token:
+var affiliateToken:String? = "10l3KX"
+// This will append 'at=10l3KX' to your App Store product and review links. 
+// If the optional string is nil, then nothing will be appended.
+````
+
+### Campaign Token
+The campaign token will provide information about where the App Store link was actually tapped/clicked. You can be as granular as you'd like. 
+
+````swift
+// Enter your campaign token:
+var campaignToken:String? = "ratings-drumkick"
+// This will append '&ct=ratings-drumkick' to your App Store product and review links.
+// If the optional string is nil, then nothing will be appended.
+````
+
+Most people who have an Apple affiliate tokens don't seem to include campaign tokens, or know about them. But, it will help you identify where your App Store affiliate links are being triggered, and which apps are generating interest. In my example of 'ratings-drumkick', I'm listing [the app that contains the affiliate link]-[the name of the app that the App Store link is taking the user to].
 
 If your Product, Affiliate, and Campaign tokens are included (not nil), they will be appended to the `appStoreProductLink` and the `appStoreReviewLink` URLs. Here's their output:
 
