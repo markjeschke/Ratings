@@ -137,7 +137,7 @@ If you don't add this for iOS 9 users, they won't be able to display the app ima
 The star rating and the external link icons are displayed using the free **Font Awesome** font. Here is how to integrate them into your own Xcode project:
 
 1. Download the Font Awesome font from [http://fontawesome.io/](http://fontawesome.io/).
-2. Open the downloaded zip file and select `fontawesome-webfont.ttf` from within the `fonts` folder. If you want to use the Font Awesome icons in your Mac authoring app, such as Adobe Photoshop or Illustrator, 
+2. Open the downloaded zip file and select `fontawesome-webfont.ttf` from within the `fonts` folder. 
 3. Drag and drop to import and copy the True-Type font into your Xcode project navigation tree.
 4. Open the `Info.plist` and add the property: `Fonts provided by application`
 5. Inside of `Item 0`, enter `fontawesome-webfont.ttf` as the string value.
@@ -165,6 +165,16 @@ The unicode for the accessoryViewIcon is: fa-external-link [&amp;&#35;xf08e;], s
 The unicode numbers for each icon can be found here: [http://fontawesome.io/cheatsheet](http://fontawesome.io/cheatsheet/)
 
 If you use the Font Awesome icon font in your app, be sure to include Font Awesome attribution and license information, which can be found [here](http://fontawesome.io/license/).
+
+**Tip**
+If you want to use the Font Awesome icons in an Adobe Illustrator canvas, you will want to install `fontawesome-webfont.otf` into your Mac's Font Book. 
+
+From within Illustrator:
+1. Select the 'Type' tool.
+2. Click anywhere on the canvas to place the text layer.
+3. Go to the top menu and select Type &gt; Glyphs.
+4. Enter 'FontAwesome' as your font in the bottom input field of the Glyphs menu.
+5. Double-click to add the icon to your text layer.
 
 ### App Product & Review Links
 
