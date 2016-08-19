@@ -117,6 +117,10 @@ This review link will *not* go anywhere on the App Store until your app's ID is 
 self.appStoreReviewLink! += "&id=\(self.trackId!)"
 ````
 
+The appended result will look like this:
+
+[`http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8&id=589674071`](http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8&id=589674071)
+
 ## Optional Features:
 
 ### Product Token
