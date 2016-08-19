@@ -50,9 +50,9 @@ var trackId = "589674071"
 
 For a list of all of the app [attributes](https://affiliate.itunes.apple.com/resources/documentation/itunes-store-web-service-search-api/#understand) that are returned in JSON format, please check out the [iTunes Search API](https://affiliate.itunes.apple.com/resources/documentation/itunes-store-web-service-search-api/) page.
 
-## Display the Star Ratings & User Rating Count Message
+### Display the Star Ratings & User Rating Count Message
 
-### Show the Star Icon Amount
+#### Show the Star Icon Amount
 
 Create the `StarRating` struct:
 
@@ -88,11 +88,13 @@ struct StarRating {
 Pass in the Double values for `averageUserRatingForCurrentVersion` and `averageUserRating` into the `populateStars` method:
 
 ````swift
+let starRating = StarRating()
+
 averageUserRatingForCurrentVersionStars = starRating.populateStars(averageUserRatingForCurrentVersion!)
 averageUserRatingStars = starRating.populateStars(averageUserRating!)
 ````
 
-### Update the User Rating Message for the Current App Version
+#### Update the User Rating Message for the Current App Version
 
 Create the `UserRatingCount` struct:
 
@@ -116,10 +118,12 @@ struct UserRatingCount {
 Pass in the integer value for `userRatingCountForCurrentVersion` into the `showUserCountMessage` method:
 
 ````swift
+let userRatingCount = UserRatingCount()
+
 userRatingCountMessage = userRatingCount.showUserCountMessage(userRatingCountForCurrentVersion!)
 ````
 
-## App Transport Security Settings
+### App Transport Security Settings
 In order to download and display the app's icon in your app, you must add `App Transport Security Settings` within your projects `Info.plist`. 
 1. Open its row to add `Allow Arbitrary Loads` as the dictionary key.
 2. Set its boolean value to `YES`. 
@@ -128,7 +132,7 @@ If you don't add this for iOS 9 users, they won't be able to display the app ima
 
 ![Ratings](assets/app-transport-security-settings.png)
 
-## Font Awesome Icons
+### Font Awesome Icons
 
 The star rating and the external link icons are displayed using the free **Font Awesome** font. Here is how to integrate them into your own Xcode project:
 
@@ -162,9 +166,9 @@ The unicode numbers for each icon can be found here: [http://fontawesome.io/chea
 
 If you use the Font Awesome icon font in your app, be sure to include Font Awesome attribution and license information, which can be found [here](http://fontawesome.io/license/).
 
-## App Product & Review Links
+### App Product & Review Links
 
-### Product Link to your app's purchase page
+#### Product Link to your app's purchase page
 
 ````swift
 // Product link on the App Store (AKA: 'trackViewUrl')
@@ -173,7 +177,7 @@ var appStoreProductLink:String?
 // It will look like this: https://itunes.apple.com/us/app/drumkick/id589674071?mt=8
 ````
 
-### Direct Link to your app's review section
+#### Direct Link to your app's review section
 
 ````swift
 // Review and rating link on the App Store
@@ -190,9 +194,9 @@ The appended result will look like this:
 
 [`http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8&id=589674071`](http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8&id=589674071)
 
-## Optional Features:
+### Optional Features:
 
-### Product Token
+#### Product Token
 This token is provided within iTunes Connect, under App Analytics. It allows Apple to provide tapped area statistics within your app in the iTunes Connect App Analytics dashboard. That way, you can avoid using a third-party analytic SDK, such as Google Analytics, or Flurry. Requires apps targeted for iOS 8 and above.
 
 ````swift
@@ -202,7 +206,7 @@ var providerToken:String? = "259432"
 // If the optional string is nil, then nothing will be appended.
 ````
 
-### Affiliate Token
+#### Affiliate Token
 Enter your Apple affiliate token, so that you can earn 7% commission of each sale that is made via your link to the App Store. If you haven't joined the free affiliate program, I suggest you do that [now](http://www.apple.com/itunes/affiliates/)! Otherwise, that's potential, passive income that you're leaving on the table.
 
 ````swift
@@ -212,7 +216,7 @@ var affiliateToken:String? = "10l3KX"
 // If the optional string is nil, then nothing will be appended.
 ````
 
-### Campaign Token
+#### Campaign Token
 The campaign token will provide information about where the App Store link was actually tapped/clicked. You can be as granular as you'd like. 
 
 ````swift
