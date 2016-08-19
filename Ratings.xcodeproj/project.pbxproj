@@ -10,7 +10,6 @@
 		175C16B41D64D40100E03C09 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175C16B31D64D40100E03C09 /* AppDelegate.swift */; };
 		175C16B91D64D40100E03C09 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 175C16B71D64D40100E03C09 /* Main.storyboard */; };
 		175C16BB1D64D40100E03C09 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 175C16BA1D64D40100E03C09 /* Assets.xcassets */; };
-		175C16BE1D64D40100E03C09 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 175C16BC1D64D40100E03C09 /* LaunchScreen.storyboard */; };
 		175C16C61D64D42400E03C09 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175C16C51D64D42400E03C09 /* ApiManager.swift */; };
 		175C16C81D64EF5300E03C09 /* RatingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175C16C71D64EF5300E03C09 /* RatingsViewController.swift */; };
 		175C16CA1D652EF900E03C09 /* fontawesome-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 175C16C91D652EF900E03C09 /* fontawesome-webfont.ttf */; };
@@ -21,7 +20,6 @@
 		175C16B31D64D40100E03C09 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		175C16B81D64D40100E03C09 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		175C16BA1D64D40100E03C09 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		175C16BD1D64D40100E03C09 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		175C16BF1D64D40100E03C09 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		175C16C51D64D42400E03C09 /* ApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
 		175C16C71D64EF5300E03C09 /* RatingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingsViewController.swift; sourceTree = "<group>"; };
@@ -103,7 +101,6 @@
 			children = (
 				175C16BA1D64D40100E03C09 /* Assets.xcassets */,
 				175C16B31D64D40100E03C09 /* AppDelegate.swift */,
-				175C16BC1D64D40100E03C09 /* LaunchScreen.storyboard */,
 				175C16BF1D64D40100E03C09 /* Info.plist */,
 				175C16CE1D65898900E03C09 /* Fonts */,
 			);
@@ -168,7 +165,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				175C16BE1D64D40100E03C09 /* LaunchScreen.storyboard in Resources */,
 				175C16CA1D652EF900E03C09 /* fontawesome-webfont.ttf in Resources */,
 				175C16BB1D64D40100E03C09 /* Assets.xcassets in Resources */,
 				175C16B91D64D40100E03C09 /* Main.storyboard in Resources */,
@@ -197,14 +193,6 @@
 				175C16B81D64D40100E03C09 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		175C16BC1D64D40100E03C09 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				175C16BD1D64D40100E03C09 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

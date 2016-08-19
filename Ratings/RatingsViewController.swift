@@ -13,8 +13,8 @@ class RatingsViewController: UITableViewController {
     
     // MARK: === Variables and Constants ===
     
-    // Enter your app's track/Apple ID from iTunes:
-    var trackId:String? = "589674071"
+    // Enter your app's track/Apple ID from iTunes. This cannot be empty in order for the iTunes app look up search to work.
+    var trackId:String = "589674071"
     
     // Create empty strings that will hold the iTunes API data
     var trackName: String?
@@ -73,7 +73,7 @@ class RatingsViewController: UITableViewController {
         super.viewDidLoad()
         
         // Make the JSON request.
-        requestData(trackId!)
+        requestData(trackId)
         
         title = "Loading info..."
         
@@ -92,6 +92,8 @@ class RatingsViewController: UITableViewController {
         // Set the attributes for accessory view icon in the 'Rate & Review in the App Store' TableView cell.
         accessoryViewIcon.textColor = UIColor.darkGrayColor()
         accessoryViewIcon.font = UIFont(name: "FontAwesome", size: 16)
+        // The accessory view displays an external link icon from the FontAwesome font.
+        // The unicode numbers for each icon can be found here: http://fontawesome.io/cheatsheet/
         accessoryViewIcon.text = "\u{f08e}"
     }
     
@@ -174,7 +176,7 @@ class RatingsViewController: UITableViewController {
         userRatingCountMessage = "\(howManyUsers!) rated this current version"
         
         // Append the app's trackId to the appStoreReviewLink URL
-        appStoreReviewLink! += "&id=\(trackId!)"
+        appStoreReviewLink! += "&id=\(trackId)"
         
         ratingsInterruptionMessage = "You will never be interrupted for ratings"
         
@@ -439,7 +441,7 @@ class RatingsViewController: UITableViewController {
         } else {
             if elapsedSeconds < timeout {
                 title = "Checking network connection..."
-                requestData(trackId!)
+                requestData(trackId)
                 elapsedSeconds += 1
                 print("elapsedSeconds: \(elapsedSeconds)")
             } else {
