@@ -8,20 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		175C16B41D64D40100E03C09 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175C16B31D64D40100E03C09 /* AppDelegate.swift */; };
-		175C16B61D64D40100E03C09 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175C16B51D64D40100E03C09 /* ViewController.swift */; };
 		175C16B91D64D40100E03C09 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 175C16B71D64D40100E03C09 /* Main.storyboard */; };
 		175C16BB1D64D40100E03C09 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 175C16BA1D64D40100E03C09 /* Assets.xcassets */; };
 		175C16BE1D64D40100E03C09 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 175C16BC1D64D40100E03C09 /* LaunchScreen.storyboard */; };
+		175C16C61D64D42400E03C09 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175C16C51D64D42400E03C09 /* ApiManager.swift */; };
+		175C16C81D64EF5300E03C09 /* RatingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175C16C71D64EF5300E03C09 /* RatingsViewController.swift */; };
+		175C16CA1D652EF900E03C09 /* fontawesome-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 175C16C91D652EF900E03C09 /* fontawesome-webfont.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		175C16B01D64D40100E03C09 /* Ratings.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ratings.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		175C16B31D64D40100E03C09 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		175C16B51D64D40100E03C09 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		175C16B81D64D40100E03C09 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		175C16BA1D64D40100E03C09 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		175C16BD1D64D40100E03C09 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		175C16BF1D64D40100E03C09 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		175C16C51D64D42400E03C09 /* ApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
+		175C16C71D64EF5300E03C09 /* RatingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingsViewController.swift; sourceTree = "<group>"; };
+		175C16C91D652EF900E03C09 /* fontawesome-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fontawesome-webfont.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +58,56 @@
 		175C16B21D64D40100E03C09 /* Ratings */ = {
 			isa = PBXGroup;
 			children = (
-				175C16B31D64D40100E03C09 /* AppDelegate.swift */,
-				175C16B51D64D40100E03C09 /* ViewController.swift */,
-				175C16B71D64D40100E03C09 /* Main.storyboard */,
-				175C16BA1D64D40100E03C09 /* Assets.xcassets */,
-				175C16BC1D64D40100E03C09 /* LaunchScreen.storyboard */,
-				175C16BF1D64D40100E03C09 /* Info.plist */,
+				175C16CB1D65895D00E03C09 /* Model */,
+				175C16CD1D65897400E03C09 /* View */,
+				175C16CC1D65896400E03C09 /* Controller */,
+				175C16CF1D65899100E03C09 /* Supporting Files */,
 			);
 			path = Ratings;
+			sourceTree = "<group>";
+		};
+		175C16CB1D65895D00E03C09 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				175C16C51D64D42400E03C09 /* ApiManager.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		175C16CC1D65896400E03C09 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				175C16C71D64EF5300E03C09 /* RatingsViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		175C16CD1D65897400E03C09 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				175C16B71D64D40100E03C09 /* Main.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		175C16CE1D65898900E03C09 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				175C16C91D652EF900E03C09 /* fontawesome-webfont.ttf */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
+		175C16CF1D65899100E03C09 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				175C16BA1D64D40100E03C09 /* Assets.xcassets */,
+				175C16B31D64D40100E03C09 /* AppDelegate.swift */,
+				175C16BC1D64D40100E03C09 /* LaunchScreen.storyboard */,
+				175C16BF1D64D40100E03C09 /* Info.plist */,
+				175C16CE1D65898900E03C09 /* Fonts */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -123,6 +169,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				175C16BE1D64D40100E03C09 /* LaunchScreen.storyboard in Resources */,
+				175C16CA1D652EF900E03C09 /* fontawesome-webfont.ttf in Resources */,
 				175C16BB1D64D40100E03C09 /* Assets.xcassets in Resources */,
 				175C16B91D64D40100E03C09 /* Main.storyboard in Resources */,
 			);
@@ -135,7 +182,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				175C16B61D64D40100E03C09 /* ViewController.swift in Sources */,
+				175C16C81D64EF5300E03C09 /* RatingsViewController.swift in Sources */,
+				175C16C61D64D42400E03C09 /* ApiManager.swift in Sources */,
 				175C16B41D64D40100E03C09 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -252,6 +300,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Ratings/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.oogamedia.Ratings;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -263,6 +312,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Ratings/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.oogamedia.Ratings;
 				PRODUCT_NAME = "$(TARGET_NAME)";
