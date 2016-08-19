@@ -65,6 +65,9 @@ class RatingsViewController: UITableViewController {
     let fontBold = "KohinoorDevanagari-Semibold"
     let fontRegular = "KohinoorDevanagari-Regular"
     
+    let starRating = StarRating()
+    let userRatingCount = UserRatingCount()
+    
     let blueColor = UIColor(red: 13/255, green: 160/255, blue: 255/255, alpha: 1)
     
     // MARK: === View Life-cycle ===
@@ -129,51 +132,11 @@ class RatingsViewController: UITableViewController {
         
         // Using FontAwesome star icons, the amount displayed are determind by the received double value
         // The unicode numbers for each icon can be found here: http://fontawesome.io/cheatsheet/
+ 
+        averageUserRatingForCurrentVersionStars = starRating.populateStars(averageUserRatingForCurrentVersion!)
+        averageUserRatingStars = starRating.populateStars(averageUserRating!)
         
-        func showMessage(myRatingCount:Double?) -> String {
-            if let myRatingCount = myRatingCount {
-                switch(myRatingCount) {
-                case 1:
-                    return "\u{f005}"
-                case 1.5:
-                    return "\u{f005}\u{f089}"
-                case 2:
-                    return "\u{f005}\u{f005}"
-                case 2.5:
-                    return "\u{f005}\u{f005}\u{f089}"
-                case 3:
-                    return "\u{f005}\u{f005}\u{f005}"
-                case 3.5:
-                    return "\u{f005}\u{f005}\u{f005}\u{f089}"
-                case 4:
-                    return "\u{f005}\u{f005}\u{f005}\u{f005}"
-                case 4.5:
-                    return "\u{f005}\u{f005}\u{f005}\u{f005}\u{f089}"
-                case 5:
-                    return "\u{f005}\u{f005}\u{f005}\u{f005}\u{f005}"
-                default:
-                    return ""
-                }
-            } else {
-                return ""
-            }
-        }
-        
-        averageUserRatingForCurrentVersionStars = showMessage(averageUserRatingForCurrentVersion!)
-        averageUserRatingStars = showMessage(averageUserRating!)
-        
-        // Modify message, depending upon the amount of user ratings have been received.
-        let howManyUsers: String?
-        if userRatingCountForCurrentVersion > 0 {
-            if userRatingCountForCurrentVersion == 1 {
-                howManyUsers = "\(userRatingCountForCurrentVersion!) person has"
-            } else {
-                howManyUsers = "\(userRatingCountForCurrentVersion!) people have"
-            }
-        } else {
-            howManyUsers = "No one has"
-        }
-        userRatingCountMessage = "\(howManyUsers!) rated this current version"
+        userRatingCountMessage = userRatingCount.showUserCountMessage(userRatingCountForCurrentVersion!)
         
         // Append the app's trackId to the appStoreReviewLink URL
         appStoreReviewLink! += "&id=\(trackId)"
@@ -460,4 +423,46 @@ class RatingsViewController: UITableViewController {
         print("NetworkTimer has stopped")
     }
 
+}
+
+struct StarRating {
+    func populateStars(ratingCount:Double) -> String {
+        switch(ratingCount) {
+        case 1:
+            return "\u{f005}"
+        case 1.5:
+            return "\u{f005}\u{f089}"
+        case 2:
+            return "\u{f005}\u{f005}"
+        case 2.5:
+            return "\u{f005}\u{f005}\u{f089}"
+        case 3:
+            return "\u{f005}\u{f005}\u{f005}"
+        case 3.5:
+            return "\u{f005}\u{f005}\u{f005}\u{f089}"
+        case 4:
+            return "\u{f005}\u{f005}\u{f005}\u{f005}"
+        case 4.5:
+            return "\u{f005}\u{f005}\u{f005}\u{f005}\u{f089}"
+        case 5:
+            return "\u{f005}\u{f005}\u{f005}\u{f005}\u{f005}"
+        default:
+            return ""
+        }
+    }
+}
+
+struct UserRatingCount {
+    func showUserCountMessage(userCount:Int) -> String {
+        var howManyUsers:String
+        switch(userCount) {
+        case 0:
+            howManyUsers = "No one has"
+        case 1:
+            howManyUsers = "\(userCount) person has"
+        default:
+            howManyUsers = "\(userCount) people have"
+        }
+        return "\(howManyUsers) rated this current version"
+    }
 }

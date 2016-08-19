@@ -4,7 +4,7 @@ This Swift Xcode project demonstrates how to show your app ratings with Font Awe
 
 ![Ratings](assets/screenshot.png)
 
-### Features & Specifications:
+## Features & Specifications:
 
 * Utilizes a singleton shared instance that manages the iTunes API request and returns the JSON results into a TableView.
 * Displays how many users have rated and reviewed the current version of the app, using icons from **[Font Awesome](http://fontawesome.io/)**.
@@ -50,7 +50,76 @@ var trackId = "589674071"
 
 For a list of all of the app [attributes](https://affiliate.itunes.apple.com/resources/documentation/itunes-store-web-service-search-api/#understand) that are returned in JSON format, please check out the [iTunes Search API](https://affiliate.itunes.apple.com/resources/documentation/itunes-store-web-service-search-api/) page.
 
-### App Transport Security Settings
+## Display the Star Ratings & User Rating Count Message
+
+### Show the Star Icon Amount
+
+Create the `StarRating` struct:
+
+````swift
+struct StarRating {
+    func populateStars(ratingCount:Double) -> String {
+        switch(ratingCount) {
+        case 1:
+            return "\u{f005}"
+        case 1.5:
+            return "\u{f005}\u{f089}"
+        case 2:
+            return "\u{f005}\u{f005}"
+        case 2.5:
+            return "\u{f005}\u{f005}\u{f089}"
+        case 3:
+            return "\u{f005}\u{f005}\u{f005}"
+        case 3.5:
+            return "\u{f005}\u{f005}\u{f005}\u{f089}"
+        case 4:
+            return "\u{f005}\u{f005}\u{f005}\u{f005}"
+        case 4.5:
+            return "\u{f005}\u{f005}\u{f005}\u{f005}\u{f089}"
+        case 5:
+            return "\u{f005}\u{f005}\u{f005}\u{f005}\u{f005}"
+        default:
+            return ""
+        }
+    }
+}
+````
+
+Pass in the Double values for `averageUserRatingForCurrentVersion` and `averageUserRating` into the `populateStars` method:
+
+````swift
+averageUserRatingForCurrentVersionStars = starRating.populateStars(averageUserRatingForCurrentVersion!)
+averageUserRatingStars = starRating.populateStars(averageUserRating!)
+````
+
+### Update the User Rating Message for the Current App Version
+
+Create the `UserRatingCount` struct:
+
+````swift
+struct UserRatingCount {
+    func showUserCountMessage(userCount:Int) -> String {
+        var howManyUsers:String
+        switch(userCount) {
+        case 0:
+            howManyUsers = "No one has"
+        case 1:
+            howManyUsers = "\(userCount) person has"
+        default:
+            howManyUsers = "\(userCount) people have"
+        }
+        return "\(howManyUsers) rated this current version"
+    }
+}
+````
+
+Pass in the integer value for `userRatingCountForCurrentVersion` into the `showUserCountMessage` method:
+
+````swift
+userRatingCountMessage = userRatingCount.showUserCountMessage(userRatingCountForCurrentVersion!)
+````
+
+## App Transport Security Settings
 In order to download and display the app's icon in your app, you must add `App Transport Security Settings` within your projects `Info.plist`. 
 1. Open its row to add `Allow Arbitrary Loads` as the dictionary key.
 2. Set its boolean value to `YES`. 
@@ -59,7 +128,7 @@ If you don't add this for iOS 9 users, they won't be able to display the app ima
 
 ![Ratings](assets/app-transport-security-settings.png)
 
-### Font Awesome Icons
+## Font Awesome Icons
 
 The star rating and the external link icons are displayed using the free **Font Awesome** font. Here is how to integrate them into your own Xcode project:
 
